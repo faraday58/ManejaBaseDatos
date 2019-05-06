@@ -1,6 +1,7 @@
 package com.temas.selectos.manejabasedatos;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,4 +51,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void onClickBuscar(View v){
+        AuxSQL auxSQL = new AuxSQL(this,"DBContactos",null,1);
+        SQLiteDatabase db = auxSQL.getReadableDatabase();
+        String codigo= edtID.getText().toString();
+        Cursor renglon = db.rawQuery("SELECT nombre,telefono,correo FROM Contactos WHERE id="+codigo,null);
+        if(renglon.moveToFirst())
+        {
+            edtNombre.setText(renglon.getString(0));
+            edtTelefono.setText(renglon.getString(1));
+            edtCorreo.setText(renglon.getString(2));
+        }else
+        {
+            Toast.makeText(this, "No existe el contacto con ese código", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 }
