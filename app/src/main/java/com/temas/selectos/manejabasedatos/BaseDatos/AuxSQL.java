@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AuxSQL extends SQLiteOpenHelper {
 
-    String sqlTabla="CREATE TABLE Contactos(id int primary key,nombre text,telefono text,correo text)";
+    String sqlTabla="CREATE TABLE Contactos(id int primary key,nombre text,telefono text,correo text,foto blob) ";
 
     public AuxSQL(Context context,String name,SQLiteDatabase.CursorFactory factory, int version) {
 
